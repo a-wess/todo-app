@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 export class RequestError extends Error {
-  constructor (message, status = '400') {
+  constructor (message, status = 400) {
     super(message)
     this.name = 'RequestError'
     this.status = status

@@ -10,7 +10,7 @@ export default function verify (req, res, next) {
     const decoded = jwt.verify(token, process.env.TOKEN_KEY)
     req.userId = decoded.userId
   } catch (err) {
-    return res.status(401).send('Invalid Token')
+    return res.status(403).send('Invalid Token')
   }
   return next()
 }

@@ -10,7 +10,6 @@ const uri =
 let database = null
 
 export async function connect () {
-  console.log(uri)
   const client = await MongoClient.connect(uri)
   database = client.db(process.env.MONGO_DB)
 }

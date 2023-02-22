@@ -40,7 +40,7 @@ class TaskController {
   async update (request) {
     const payload = {}
     if (request.text && request.text?.length > 0) payload.text = request.text
-    if (request.finished) payload.finished = request.finished
+    if (typeof (request.finished) === 'boolean') payload.finished = request.finished
 
     const tasks = getDB().collection('tasks')
 
@@ -76,8 +76,7 @@ class TaskController {
     const tasks = getDB().collection('tasks')
 
     const words = request.query?.split(' ').map(str => '"' + str + '"').join(' ') ?? ''
-    const query = words.length > 0 ? { $text: { $search: words }, userId: request.userId } : null
-
+    const query = (words !== '""') ? { $text: { $search: words }, userId: request.userId } : null
     const results = await tasks.find(query ?? { userId: request.userId }).toArray()
 
     return results.map(task => ({
