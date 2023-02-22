@@ -14,7 +14,7 @@
             <input v-model="form.name" id="name" class="field-input">
 
             <label for="name" style="margin-top: 1rem">Пароль</label>
-            <input v-model="form.password" id="password" class="field-input">
+            <input v-model="form.password" id="password" type="password" class="field-input">
 
             <p v-if="error.length > 0" style="color: red">{{ error }}</p>
 

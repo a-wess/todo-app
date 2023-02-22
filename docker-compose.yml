@@ -1,5 +1,18 @@
 version: '3'
 services:
+  todo-backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    image: todo-backend
+    container_name: todo-backend
+    restart: unless-stopped
+    ports:
+      - 9001:3000
+    environment:
+      PORT: 3000
+    depends_on:
+      - mongodb
   mongodb:
     image: 'mongo'
     container_name: 'todo-mongo-container'
